@@ -1,32 +1,66 @@
-/* Write a program to find the index of a substring of a string.
-void input_string(char *a);
-int str_reverse(char *string, char *substring);
-void output(char *string, char *substring, int index); */
-
-int string_length(char *s)
+#include<stdio.h>
+int input_n()
 {
-  int i;
-  for(i=0;s[i]!='\0';i++);
-  return i;
+  int n;
+  printf("Enter the value of n:");
+  scanf("%d",&n);
+  return n;
 }
-
-int string_ncmp(char *s1,char *s2)
+void input_array(int n,int a[])
 {
-  for(int i=0; i<n && s1[i]==s2[i] && s1[i] != '\0';i++);
-  return s1[i] - s2[i];
+  for(int i=0;i<n;i++)
+    {
+      printf("\nEnter the numbers in array:");
+      scanf("%d",&a[i]);
+    }
 }
-
-
-int string_index(char *s, char *subs)
+void sort(int n,int a[])
 {
-  int l1=string_lenght(s);
-  int l2=string_lenght(subs);
-  if l1 < l2
-      return -1;
-  for(int i=0;i<l1-l2;i++)
-    if (string_nscmp(s,subs))
-      return i;
-  return -1;
+  int temp;
+  for(int x = 0; x < n - 1; x++)
+  {
+     for(int y = 0; y < n - x - 1; y++)
+        {
+          if(a[y] > a[y + 1])
+            {   
+              temp = a[y];
+              a[y] = a[y + 1];
+              a[y + 1] = temp;
+            }  
+        }
+  }
 }
-
-/* Understand and debug the functions and write main */
+int input_key()
+{
+  int key;
+  printf("Enter the key element you want to serch:");
+  scanf("%d",&key);
+  return key;
+}
+int bin_search(int n,int a[],int key)
+{
+  int position;
+  for(int i=0;i<n;i++)
+    {
+      if(a[i]==key)
+      {
+        position=i;
+      }
+    }
+  return position;
+}
+void print_position(int key,int position)
+{
+  printf("%d is present in %d position",key,position);
+}
+int main()
+{
+  int n,key,a[100],position;
+  n=input_n();
+  input_array(n,a);
+  sort(n,a);
+  key=input_key();
+  position=bin_search(n,a,key);
+  print_position(key,position);
+  return 0;
+}

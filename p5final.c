@@ -1,47 +1,49 @@
-#include <stdio.h>
-int input()
+#include<stdio.h>
+int input_n()
 {
   int n;
-  printf("Enter the number\n");
+  printf("Enter the value of n:");
   scanf("%d",&n);
   return n;
 }
-
-void init_array(int n, int a[n])
+void input_array(int n,int a[])
 {
   for(int i=0;i<n;i++)
-    a[i] = i;
-  a[1]=0;
+    {
+      printf("\nEnter the numbers in array:");
+      scanf("%d",&a[i]);
+    }
 }
-
-void ets(int n, int a[n])
+void sort(int n,int a[])
 {
-  int i=0;
-   /* Find next non-zero number */
-  while(i<sqrt(n)){
-   for(;a[i]==0 ;i++);
-   for(int k=i+i;k<n;k += i)
-     a[i] = 0;
-   i++;
+  int temp;
+  for(int x = 0; x < n - 1; x++)
+  {
+     for(int y = 0; y < n - x - 1; y++)
+        {
+          if(a[y] > a[y + 1])
+            {   
+              temp = a[y];
+              a[y] = a[y + 1];
+              a[y + 1] = temp;
+            }  
+        }
   }
 }
-
-
-void display(int n, int a[n])
+void output(int n,int a[])
 {
   for(int i=0;i<n;i++)
-    if(a[i]!=0)
+    {
       printf("%d ",a[i]);
+    }
   printf("\n");
 }
-
 int main()
 {
-  int n;
-  n=input();
-  int a[n];
-  init_array(n,a);
-  ets(n,a);
-  display(n,a);
+  int n,a[100];
+  n=input_n();
+  input_array(n,a);
+  sort(n,a);
+  output(n,a);
   return 0;
 }

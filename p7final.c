@@ -1,21 +1,10 @@
 #include<stdio.h>
-struct _fraction
+void input_name(char *s)
 {
-  int num,den;
-};
-typedef struct _fraction Fraction;
-  int gcd(int a,int b)
-  {
-    int t;
-    while (b != 0)
-      {
-        t = b;
-        b = a%b;
-        a = t;
-      }
-    return a;
+  printf("enter a name:");
+  scanf("%s",s);
 }
-int main()
+int is_name_nice(char *s)
 {
-  printf("%d\n",gcd(16,24));
+  
 }
